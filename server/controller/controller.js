@@ -54,12 +54,10 @@ exports.find = (req, res) => {
         res.send(user);
       })
       .catch((err) => {
-        res
-          .status(500)
-          .send({
-            message:
-              err.message || "Error Occurred while retriving user information",
-          });
+        res.status(500).send({
+          message:
+            err.message || "Error Occurred while retriving user information",
+        });
       });
   }
 };
@@ -74,11 +72,9 @@ exports.update = (req, res) => {
   Userdb.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
     .then((data) => {
       if (!data) {
-        res
-          .status(404)
-          .send({
-            message: `Cannot Update user with ${id}. Maybe user not found!`,
-          });
+        res.status(404).send({
+          message: `Cannot Update user with ${id}. Maybe user not found!`,
+        });
       } else {
         res.send(data);
       }
